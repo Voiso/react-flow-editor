@@ -56,6 +56,8 @@ export type ConnectorStyleConfig = {
   width: number
 }
 
+export type ActiveConnection = [Point, Point, string?, string?] | []
+
 export type ScaleComponentProps = {
   zoomIn: () => void
   zoomOut: () => void
@@ -78,11 +80,11 @@ export type MenuComponentProps = {
 export type EditorProps = {
   nodes: Node[]
   onNodesChange: (nodes: Node[]) => void
-  NodeComponent: React.FC<Node>
-  SelectionZoneComponent?: React.FC
-  ScaleComponent?: React.FC<ScaleComponentProps>
-  MenuComponent?: React.FC<MenuComponentProps>
-  OutputComponent?: React.FC<OutputComponentProps>
+  NodeComponent: (props: Node) => JSX.Element
+  SelectionZoneComponent?: () => JSX.Element
+  ScaleComponent?: (props: ScaleComponentProps) => JSX.Element
+  MenuComponent?: (props: MenuComponentProps) => JSX.Element
+  OutputComponent?: (props: OutputComponentProps) => JSX.Element
   importantNodeIds?: Array<string>
   connectorStyleConfig?: ConnectorStyleConfig
   connectorsBehaviour?: ConnectorsBehaviour

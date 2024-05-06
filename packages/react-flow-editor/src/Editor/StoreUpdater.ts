@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react"
+import { useEffect } from "react"
 import { MapStore, WritableAtom } from "nanostores"
 
 import { NodesAtom } from "@/Editor/state/Nodes"
@@ -36,7 +36,7 @@ const synchronizeWithStore = <T extends Record<string, unknown> | Array<unknown>
 /**
  * Used for sync props with inner store
  */
-export const StoreUpdater: FC<Props> = ({ nodes, onNodesChange }) => {
+export const StoreUpdater = ({ nodes, onNodesChange }: Props) => {
   synchronizeWithStore(nodes, NodesAtom, onNodesChange)
 
   return null

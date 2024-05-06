@@ -57,12 +57,12 @@ export const pointPosition = { x: 30, y: -10 }
 export const inputPosition = { x: 0, y: -10 }
 
 export const TIPS = `
-  - DnD to move canvas or nodes\n
+  - DnD with right mouse down to move canvas\n
   - Available autoScroll when DnD connection or nodes\n
-  - Multiple Selection with SHIFT + click nodes\n
-  - Multiple Selection with SHIFT and dragging select zone\n
+  - Multiple Selection with left mouse click with shift on nodes\n
+  - Multiple Selection with left mouse down and dragging select zone\n
   - Delete (multiple too) selected nodes with DELETE/BACKSPACE\n
-  - DnD multiple selected nodes with SHIFT\n
+  - DnD multiple selected nodes with left mouse down on selected nodes\n
   - Scroll mouse to zoom
 `
 

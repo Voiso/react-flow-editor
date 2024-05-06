@@ -13,7 +13,7 @@ type DisconnectorProps = {
   output: Output
 }
 
-const ArrowDisconnector: React.FC<DisconnectorProps> = ({ position, fromId, output }) => {
+const ArrowDisconnector = ({ position, fromId, output }: DisconnectorProps) => {
   const { zoomContainerRef } = useRectsContext()
 
   const onMouseDown = (e: React.MouseEvent<SVGRectElement>) => {

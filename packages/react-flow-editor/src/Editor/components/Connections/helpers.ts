@@ -1,11 +1,22 @@
-import { Node, Point, Transformation } from "@/types"
+import { Node, Output, Point, Transformation } from "@/types"
 import { DISCONNECTOR_ZONE, LARGEST_RECT, MINIMUM_SVG_SIZE } from "@/Editor/constants"
 
+import { SVGOffsetState } from "../../state/SvgOffset"
 import { Axis, NodeGroupsRect } from "../../types"
 
 const WHITE_SPACE_SCREENS = 2
 
-const recomputeBorder = (border: number, transform: Transformation, axis: Axis, isStartEdge?: boolean): number => {
+const recomputeBorder = ({
+  border,
+  transform,
+  axis,
+  isStartEdge
+}: {
+  border: number
+  transform: Transformation
+  axis: Axis
+  isStartEdge?: boolean
+}): number => {
   const whiteSpace = WHITE_SPACE_SCREENS * (axis === Axis.x ? window.innerWidth : window.innerHeight) * transform.zoom
   const svgOffset = (isStartEdge ? -1 : 1) * MINIMUM_SVG_SIZE
   const inZoneCondition = isStartEdge ? border < svgOffset : border > svgOffset
@@ -37,10 +48,20 @@ export const computeNodeGroupsRect = (nodes: Node[], transform: Transformation):
     { ...LARGEST_RECT }
   )
 
-  dimensionsRect.leftPoint = recomputeBorder(dimensionsRect.leftPoint, transform, Axis.x, true)
-  dimensionsRect.rightPoint = recomputeBorder(dimensionsRect.rightPoint, transform, Axis.x)
-  dimensionsRect.topPoint = recomputeBorder(dimensionsRect.topPoint, transform, Axis.y, true)
-  dimensionsRect.bottomPoint = recomputeBorder(dimensionsRect.bottomPoint, transform, Axis.y)
+  dimensionsRect.leftPoint = recomputeBorder({
+    border: dimensionsRect.leftPoint,
+    transform,
+    axis: Axis.x,
+    isStartEdge: true
+  })
+  dimensionsRect.rightPoint = recomputeBorder({ border: dimensionsRect.rightPoint, transform, axis: Axis.x })
+  dimensionsRect.topPoint = recomputeBorder({
+    border: dimensionsRect.topPoint,
+    transform,
+    axis: Axis.y,
+    isStartEdge: true
+  })
+  dimensionsRect.bottomPoint = recomputeBorder({ border: dimensionsRect.bottomPoint, transform, axis: Axis.y })
 
   return {
     ...dimensionsRect,
@@ -57,4 +78,17 @@ export const connectionContainerStyle = (rect: NodeGroupsRect): React.CSSPropert
 
 export const disconnectorStyle = (pos: Point) => ({
   transform: `translate(${pos.x - DISCONNECTOR_ZONE / 2}px, ${pos.y - DISCONNECTOR_ZONE / 2}px)`
+})
+
+export const getOffsettedPosition = ({
+  position,
+  node,
+  svgOffset
+}: {
+  position?: Partial<Output>
+  node: Node
+  svgOffset: SVGOffsetState
+}) => ({
+  x: -svgOffset.x + node.position.x + (position?.position?.x || 0),
+  y: -svgOffset.y + node.position.y + (position?.position?.y || 0)
 })

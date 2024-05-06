@@ -16,17 +16,18 @@ type Props = {
   output: OutputType
 }
 
-export const Output: React.FC<Props> = React.memo(({ nodeId, nodeState, output }) => {
+export const Output = React.memo(({ nodeId, nodeState, output }: Props) => {
   const { OutputComponent } = useEditorContext()
   const hoveredNodeId = useStore(HoveredNodeIdAtom)
   const dragItem = useStore(DragItemAtom)
 
   const startNewConnection = (e: React.MouseEvent<HTMLElement>) => {
     resetEvent(e)
+
     if (e.button === BUTTON_LEFT) {
       DragItemAtom.set({
         type: DragItemType.connectionPoint,
-        output: output,
+        output,
         id: nodeId,
         ...output.position
       })

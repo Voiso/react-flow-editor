@@ -13,8 +13,8 @@ export default defineConfig({
     }
   },
   plugins: [
-    react({ jsxRuntime: "classic" }),
     dts(),
+    react(),
     viteStaticCopy({
       targets: [
         {
@@ -29,7 +29,7 @@ export default defineConfig({
     outDir: "./dist",
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: "@voiso/react-flow-editor"
+      name: "voiso/react-flow-editor"
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled

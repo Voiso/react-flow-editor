@@ -8,7 +8,7 @@ context("Node connections", () => {
   beforeEach(connectionsModel.open)
 
   const checkConnectionsCount = (count: number) =>
-    connectionsModel.getConnections().then(($cons) => expect($cons.length).to.equal(count))
+    connectionsModel.getConnections().then(($cons) => expect($cons.length).to.equal(count * 2))
 
   describe("Connections logic", () => {
     const verifyFirstConnectionInitial = () =>
@@ -45,6 +45,7 @@ context("Node connections", () => {
         .then(coordinatesFromPath)
         .then((coordinates) => {
           const properCoordinates = [15253, 15136, 15153, 15136, 15359, 15140, 15259, 15140]
+
           coordinates.forEach((coord, inx) => expect(coord).to.closeTo(properCoordinates[inx], 2))
         })
 
@@ -79,11 +80,12 @@ context("Node connections", () => {
       connectionsModel.mouseDown(FIRST_NODE_CONNECTOR.X, FIRST_NODE_CONNECTOR.Y)
       connectionsModel
         .getRoot()
-        .realMouseMove(FIRST_NODE_CONNECTOR.X + 10, FIRST_NODE_CONNECTOR.Y)
+        .realMouseMove(FIRST_NODE_CONNECTOR.X + 20, FIRST_NODE_CONNECTOR.Y)
         .realMouseUp()
 
       checkConnectionsCount(2)
 
+      connectionsModel.getRoot().realMouseMove(FIRST_NODE_CONNECTOR.X, FIRST_NODE_CONNECTOR.Y)
       connectionsModel.mouseDown(FIRST_NODE_CONNECTOR.X, FIRST_NODE_CONNECTOR.Y)
       connectionsModel.getRoot().realMouseMove(CLICK_COORDS.SECOND_NODE.X, CLICK_COORDS.SECOND_NODE.Y)
       connectionsModel.mouseUp(CLICK_COORDS.SECOND_NODE.X, CLICK_COORDS.SECOND_NODE.Y)
@@ -105,6 +107,7 @@ context("Node connections", () => {
         .last()
         .then(($el) => {
           const rect = $el.get()[0].getBoundingClientRect()
+
           expect(rect.top).to.closeTo(CANVAS_ZONE_POINTS.TOP, 2)
           expect(rect.left).to.lessThan(0)
           expect(rect.right).to.closeTo(CANVAS_ZONE_POINTS.RIGHT, 2)
@@ -140,7 +143,7 @@ context("Node connections", () => {
     })
 
     it("Should connect nodes with cyclic prop", () => {
-      connectionsModel.dnd(990, 400, 750, 300)
+      connectionsModel.dndCanvas(990, 400, 750, 300)
 
       checkConnectionsCount(3)
 

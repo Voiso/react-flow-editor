@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useStore } from "@nanostores/react"
 
 import { MenuComponentProps, ScaleComponentProps } from "@/types"
 
 import Background from "./components/Background/Background"
-import { transformCanvasStyle } from "./helpers"
+import { resetEvent, transformCanvasStyle } from "./helpers"
 import useDnD from "./helpers/DnD"
 import { useZoom } from "./helpers/zoom"
 import { useHotKeys } from "./helpers/hotKeys"
@@ -17,12 +17,12 @@ import { Menu } from "./components/Menu"
 import { MountedContexts } from "./types"
 
 type Props = {
-  SelectionZoneComponent?: React.FC
-  ScaleComponent?: React.FC<ScaleComponentProps>
-  MenuComponent?: React.FC<MenuComponentProps>
+  SelectionZoneComponent?: () => JSX.Element
+  ScaleComponent?: (props: ScaleComponentProps) => JSX.Element
+  MenuComponent?: (props: MenuComponentProps) => JSX.Element
 }
 
-export const Canvas: React.FC<Props> = ({ SelectionZoneComponent, ScaleComponent, MenuComponent }) => {
+export const Canvas = ({ SelectionZoneComponent, ScaleComponent, MenuComponent }: Props) => {
   const zoomContainerRef = useRef<HTMLDivElement | null>(null)
   const editorContainerRef = useRef<HTMLDivElement | null>(null)
   const [rectsContextValue, setRectsContextValue] = useState<MountedContexts>({ zoomContainerRef, editorContainerRef })
@@ -43,6 +43,7 @@ export const Canvas: React.FC<Props> = ({ SelectionZoneComponent, ScaleComponent
         onMouseMove={onDrag}
         onWheel={onWheel}
         onMouseDownCapture={onDragStarted}
+        onContextMenu={resetEvent}
         ref={editorContainerRef}
         className="react-flow-editor"
       >

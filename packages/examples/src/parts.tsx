@@ -1,7 +1,6 @@
-import * as React from "react"
 import { Node } from "@voiso/react-flow-editor"
 
-export const NodeAttributes: React.FC<{ nodes: Node[] }> = ({ nodes }) => (
+export const NodeAttributes = ({ nodes }: { nodes: Node[] }) => (
   <div>
     <h2>Nodes attributes</h2>
     {nodes.map((node) => (

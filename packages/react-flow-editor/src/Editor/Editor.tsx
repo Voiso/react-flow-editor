@@ -1,5 +1,3 @@
-import React from "react"
-
 import { EditorProps } from "@/types"
 
 import { Canvas } from "./Canvas"
@@ -7,7 +5,7 @@ import { EditorContext } from "./editor-context"
 import "../_style.scss"
 import { StoreUpdater } from "./StoreUpdater"
 
-const Editor: React.FC<EditorProps> = ({
+const Editor = ({
   nodes,
   NodeComponent,
   ScaleComponent,
@@ -18,7 +16,7 @@ const Editor: React.FC<EditorProps> = ({
   onNodesChange,
   connectorStyleConfig,
   connectorsBehaviour = "avoidSharpCorners"
-}) => (
+}: EditorProps) => (
   <EditorContext.Provider
     value={{
       NodeComponent,

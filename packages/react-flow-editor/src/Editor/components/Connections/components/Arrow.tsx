@@ -1,5 +1,3 @@
-import React from "react"
-
 import { Size } from "@/types"
 import { DEFAULT_COLOR } from "@/Editor/constants"
 
@@ -9,7 +7,7 @@ type ArrowProps = {
 
 export const ARROW_ID = "triangle"
 
-export const Arrow: React.FC<ArrowProps> = ({ color = DEFAULT_COLOR, width = 10, height = 10 }) => (
+export const Arrow = ({ color = DEFAULT_COLOR, width = 10, height = 10 }: ArrowProps) => (
   <defs>
     <marker
       id={ARROW_ID}

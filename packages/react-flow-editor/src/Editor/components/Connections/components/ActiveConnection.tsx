@@ -2,11 +2,11 @@ import React from "react"
 import { useStore } from "@nanostores/react"
 
 import { Node, Output } from "@/types"
-import { DragItemType } from "@/Editor/types"
-import { DragItemAtom, NodesAtom, SvgOffsetAtom } from "@/Editor/state"
+import { HoveredConnectionAtom, NodesAtom, SelectedConnectionAtom, SvgOffsetAtom } from "@/Editor/state"
 
 import ArrowDisconnector from "./ArrowDisconnector"
 import InputConnection from "./InputConnection"
+import { getOffsettedPosition } from "../helpers"
 
 type ConnectionProps = {
   node: Node
@@ -43,17 +43,21 @@ export const ConnectionTrack = ({ output, node }: { output: Output; node: Node }
   )
 }
 
-export const Connection = ({ node }: ConnectionProps) => {
-  const dragItem = useStore(DragItemAtom)
+export const ActiveConnection = ({ node }: ConnectionProps) => {
+  const svgOffset = useStore(SvgOffsetAtom)
+  const selectedConnection = useStore(SelectedConnectionAtom)
+  const hoveredConnection = useStore(HoveredConnectionAtom)
 
-  const filteredConnections = node.outputs.filter(
-    (out) =>
-      !(
-        dragItem.type === DragItemType.connection &&
-        out.nextNodeId === dragItem.output?.nextNodeId &&
-        out.id === dragItem.output.id
-      )
-  )
+  const filteredConnections = node.outputs.filter((out) => {
+    const { x, y } = getOffsettedPosition({ position: out, node, svgOffset })
+
+    return (
+      (x === selectedConnection[0]?.x && y === selectedConnection[0].y) ||
+      (x === hoveredConnection[0]?.x && y === hoveredConnection[0].y) ||
+      (x === selectedConnection[1]?.x && y === selectedConnection[1].y) ||
+      (x === hoveredConnection[1]?.x && y === hoveredConnection[1].y)
+    )
+  })
 
   return (
     <>

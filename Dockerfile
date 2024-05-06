@@ -1,8 +1,8 @@
-FROM node:16.14.0 as flow-editor-install
+FROM node:18.12.0 as flow-editor-install
 
 WORKDIR /flow-editor
 ADD . /flow-editor
-RUN npm install -g pnpm
+RUN npm install -g pnpm@8.14.3
 RUN npm install -g vite
 RUN pnpm install
 EXPOSE 5173

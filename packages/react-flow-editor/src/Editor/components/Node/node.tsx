@@ -12,17 +12,12 @@ type NodeProps = {
   node: NodeType
 }
 
-export const Provider = ({ node }: NodeProps) => {
-  const nodeInteractions = useNodeInteractions(node)
-
-  return <Node node={node} nodeInteractions={nodeInteractions} />
-}
-
-const Node: React.FC<
-  NodeProps & {
-    nodeInteractions: ReturnType<typeof useNodeInteractions>
-  }
-> = ({ node, nodeInteractions }) => {
+const Node = ({
+  node,
+  nodeInteractions
+}: NodeProps & {
+  nodeInteractions: ReturnType<typeof useNodeInteractions>
+}) => {
   const { NodeComponent } = useEditorContext()
 
   return (
@@ -31,7 +26,7 @@ const Node: React.FC<
       className="node"
       onMouseDown={nodeInteractions.onDragStarted}
       onMouseUp={nodeInteractions.onMouseUp}
-      style={nodeStyle(node.position, node.state)}
+      style={nodeStyle(node.position, node.state, nodeInteractions.zIndex)}
       onMouseEnter={nodeInteractions.onMouseEnter}
       onMouseLeave={nodeInteractions.onMouseLeave}
     >
@@ -41,6 +36,12 @@ const Node: React.FC<
       <NodeComponent {...node} />
     </div>
   )
+}
+
+export const Provider = ({ node }: NodeProps) => {
+  const nodeInteractions = useNodeInteractions(node)
+
+  return <Node node={node} nodeInteractions={nodeInteractions} />
 }
 
 export default React.memo(Provider, isEqual)
