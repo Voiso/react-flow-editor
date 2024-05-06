@@ -1,12 +1,6 @@
 import * as ReactDOM from "react-dom"
 import { useStore } from "@nanostores/react"
-import {
-  Editor,
-  Node,
-  ScaleComponentProps,
-  OutputComponentProps,
-  ConnectorsBehaviour
-} from "@voiso/react-flow-editor"
+import { Editor, Node, ScaleComponentProps, OutputComponentProps, ConnectorsBehaviour } from "@voiso/react-flow-editor"
 import "./simple.scss"
 
 import { initialNodes, STYLED_CONFIG, TIPS } from "./constants"
