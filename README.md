@@ -33,5 +33,3 @@
 14. DnD from node_1 point drop in any place = `null` for all
 
 15. click away from nodes = `null` for all
-
-### [Changelog](./changelog.md "Changelog")

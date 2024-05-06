@@ -1,29 +1,29 @@
-# name: Publish Package to npmjs
+name: Publish Package to npmjs
 
-# on:
-#   release:
-#     types: [created]
+on:
+  release:
+    types: [created]
 
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v3
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
-#       - uses: actions/setup-node@v3
-#         with:
-#           node-version: "18.x"
-#           registry-url: "https://registry.npmjs.org"
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+          registry-url: "https://registry.npmjs.org"
 
-#       - uses: pnpm/action-setup@v2
-#         name: Install pnpm
-#         id: pnpm-install
-#         with:
-#           version: 7
-#           run_install: |
-#             - recursive: true
-#               args: [--frozen-lockfile, --strict-peer-dependencies]
-#       - run: pnpm --dir ./packages/react-flow-editor run build
-#       - run: cd ./packages/react-flow-editor && pnpm publish --no-git-checks
-#         env:
-#           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 7
+          run_install: |
+            - recursive: true
+              args: [--frozen-lockfile, --strict-peer-dependencies]
+      - run: pnpm --dir ./packages/react-flow-editor run build
+      - run: cd ./packages/react-flow-editor && pnpm publish --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
