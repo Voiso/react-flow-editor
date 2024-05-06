@@ -34,7 +34,7 @@ jobs:
           cd  packages/examples
           pnpm install
           pnpm build
-          cp -R dist ../../docs
+          cp -R ../../public ../../docs
           git add -f ../../docs
           git config --local user.email "email@gmail.com"
           git config --local user.name "User Name"
