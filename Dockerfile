@@ -1,4 +1,4 @@
-FROM node:16.14.0 as flow-editor-install
+FROM node:18.12.0 as flow-editor-install
 
 WORKDIR /flow-editor
 ADD . /flow-editor
