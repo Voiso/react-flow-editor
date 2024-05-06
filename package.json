@@ -8,7 +8,7 @@
   "contributors": [],
   "license": "MIT",
   "homepage": "https://github.com/Voiso/react-flow-editor",
-  "packageManager": "pnpm@7.14.2",
+  "packageManager": "pnpm@8.14.3",
   "scripts": {
     "prettier": "pnpm -r prettier",
     "eslint": "pnpm -r eslint",
