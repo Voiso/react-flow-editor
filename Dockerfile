@@ -4,7 +4,7 @@ WORKDIR /flow-editor
 ADD . /flow-editor
 RUN npm install -g pnpm
 RUN npm install -g vite
-RUN pnpm install
+RUN pnpm install@8.14.3
 EXPOSE 5173
 
 FROM cypress/included:11.2.0 as cypress
