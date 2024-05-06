@@ -1,4 +1,4 @@
-import React, { FC, useLayoutEffect } from "react"
+import { useLayoutEffect } from "react"
 import { useStore } from "@nanostores/react"
 
 import { ScaleComponentProps } from "@/types"
@@ -8,10 +8,10 @@ import { clampZoom } from "@/Editor/helpers"
 import { useRectsContext } from "@/Editor/rects-context"
 
 type Props = {
-  ScaleComponent: FC<ScaleComponentProps>
+  ScaleComponent: (props: ScaleComponentProps) => JSX.Element
 }
 
-export const Scale: FC<Props> = ({ ScaleComponent }) => {
+export const Scale = ({ ScaleComponent }: Props) => {
   const { editorContainerRef, isMounted } = useRectsContext()
   const transformation = useStore(TransformationMap)
 

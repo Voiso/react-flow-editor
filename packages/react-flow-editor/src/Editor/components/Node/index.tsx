@@ -4,10 +4,10 @@ import { isEqual } from "lodash"
 
 import { NodesAtom } from "@/Editor/state"
 
-import { Container as ConnectionContainer } from "../../components/Connections"
+import { Container as ConnectionContainer } from "../Connections"
 import Node from "./node"
 
-export const NodesContainer: React.FC = React.memo(() => {
+export const NodesContainer = React.memo(() => {
   const nodes = useStore(NodesAtom)
 
   return (

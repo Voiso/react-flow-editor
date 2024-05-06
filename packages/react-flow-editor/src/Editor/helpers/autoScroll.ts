@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import { useStore } from "@nanostores/react"
 import { useCallback, useEffect } from "react"
 

@@ -1,4 +1,3 @@
-import React from "react"
 import { useStore } from "@nanostores/react"
 
 import { DragItemType } from "@/Editor/types"
@@ -6,7 +5,7 @@ import { DragItemAtom, NewConnectionAtom, NodesAtom, SvgOffsetAtom } from "@/Edi
 
 import InputConnection from "./InputConnection"
 
-export const NewConnection: React.FC = () => {
+export const NewConnection = () => {
   const nodes = useStore(NodesAtom)
   const newConnectionPosition = useStore(NewConnectionAtom)
 
@@ -22,5 +21,7 @@ export const NewConnection: React.FC = () => {
     y: -svgOffset.y + outputNode.position.y + (dragItem.output?.position.y || 0)
   }
 
-  return <InputConnection key={outputNode.id} outputPosition={outputPosition} inputPosition={newConnectionPosition} />
+  return (
+    <InputConnection key={outputNode.id} outputPosition={outputPosition} inputPosition={newConnectionPosition} isNew />
+  )
 }

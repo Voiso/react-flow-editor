@@ -9,7 +9,7 @@ import {
   SelectionZoneAtom
 } from "@/Editor/state"
 
-import { BUTTON_LEFT } from "../../constants"
+import { BUTTON_LEFT, BUTTON_RIGHT } from "../../constants"
 import { DragItemType } from "../../types"
 import { useAutoScroll } from "../autoScroll"
 import { useSelectionZone } from "../useSelectionZone"
@@ -100,12 +100,12 @@ export default ({
   }
 
   const onDragStarted: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    if (e.button === BUTTON_RIGHT && !dragItem.type) {
+      DragItemAtom.set({ type: DragItemType.viewPort, x: e.clientX, y: e.clientY })
+    }
+
     if (e.button === BUTTON_LEFT && !dragItem.type) {
-      if (e.shiftKey) {
-        DragItemAtom.set({ type: DragItemType.selectionZone, x: e.clientX, y: e.clientY })
-      } else {
-        DragItemAtom.set({ type: DragItemType.viewPort, x: e.clientX, y: e.clientY })
-      }
+      DragItemAtom.set({ type: DragItemType.selectionZone, x: e.clientX, y: e.clientY })
 
       initSelectionZone(e)
     }

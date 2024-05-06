@@ -15,6 +15,10 @@ export const CLICK_COORDS = {
   SECOND_NODE: {
     X: 550,
     Y: 350
+  },
+  THIRD_NODE: {
+    X: 510,
+    Y: 510
   }
 }
 

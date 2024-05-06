@@ -17,7 +17,7 @@ context(CONTEXT, () => {
 
   describe("Movements DnD", () => {
     it("Should move canvas one movement", () => {
-      canvasModel.dnd(
+      canvasModel.dndCanvas(
         CANVAS_LONG_MOVE.FIRST_POINT.X,
         CANVAS_LONG_MOVE.FIRST_POINT.Y,
         CANVAS_LONG_MOVE.THIRD_POINT.X,
@@ -28,19 +28,19 @@ context(CONTEXT, () => {
     })
 
     it("Should move canvas chain movement", () => {
-      canvasModel.dnd(
+      canvasModel.dndCanvas(
         CANVAS_LONG_MOVE.FIRST_POINT.X,
         CANVAS_LONG_MOVE.FIRST_POINT.Y,
         CANVAS_LONG_MOVE.SECOND_POINT.X,
         CANVAS_LONG_MOVE.SECOND_POINT.Y
       )
-      canvasModel.dnd(
+      canvasModel.dndCanvas(
         CANVAS_LONG_MOVE.SECOND_POINT.X,
         CANVAS_LONG_MOVE.SECOND_POINT.Y,
         CANVAS_LONG_MOVE.SECOND_POINT.X,
         CANVAS_LONG_MOVE.FIRST_POINT.Y
       )
-      canvasModel.dnd(
+      canvasModel.dndCanvas(
         CANVAS_LONG_MOVE.SECOND_POINT.X,
         CANVAS_LONG_MOVE.FIRST_POINT.Y,
         CANVAS_LONG_MOVE.THIRD_POINT.X,
@@ -52,11 +52,11 @@ context(CONTEXT, () => {
 
     it("Should move canvas long movement", () => {
       canvasModel
-        .mouseDown(CANVAS_LONG_MOVE.FIRST_POINT.X, CANVAS_LONG_MOVE.FIRST_POINT.Y)
+        .rightMouseDown(CANVAS_LONG_MOVE.FIRST_POINT.X, CANVAS_LONG_MOVE.FIRST_POINT.Y)
         .realMouseMove(CANVAS_LONG_MOVE.SECOND_POINT.X, CANVAS_LONG_MOVE.SECOND_POINT.Y)
         .realMouseMove(CANVAS_LONG_MOVE.SECOND_POINT.X, CANVAS_LONG_MOVE.FIRST_POINT.Y)
         .realMouseMove(CANVAS_LONG_MOVE.THIRD_POINT.X, CANVAS_LONG_MOVE.THIRD_POINT.Y)
-      canvasModel.mouseUp(CANVAS_LONG_MOVE.THIRD_POINT.X, CANVAS_LONG_MOVE.THIRD_POINT.Y)
+      canvasModel.rightMouseUp(CANVAS_LONG_MOVE.THIRD_POINT.X, CANVAS_LONG_MOVE.THIRD_POINT.Y)
 
       matchEndPosition()
     })
@@ -115,7 +115,7 @@ context(CONTEXT, () => {
     })
 
     it("Should zoom with move properly", () => {
-      canvasModel.dnd(
+      canvasModel.dndCanvas(
         CANVAS_LONG_MOVE.FIRST_POINT.X,
         CANVAS_LONG_MOVE.FIRST_POINT.Y,
         CANVAS_LONG_MOVE.THIRD_POINT.X,

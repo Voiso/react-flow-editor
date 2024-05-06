@@ -15,11 +15,23 @@ export class RootModel {
   mouseUp(x: number, y: number) {
     return this.getRoot().realMouseUp({ position: { x, y } })
   }
+  rightMouseDown(x: number, y: number) {
+    return this.getRoot().realMouseDown({ position: { x, y }, button: "right" })
+  }
+  rightMouseUp(x: number, y: number) {
+    return this.getRoot().realMouseUp({ position: { x, y }, button: "right" })
+  }
   dnd(fromX: number, fromY: number, toX: number, toY: number) {
     return this.getRoot()
       .realMouseDown({ position: { x: fromX, y: fromY } })
       .realMouseMove(toX, toY)
       .realMouseUp({ position: { x: toX, y: toY } })
+  }
+  dndCanvas(fromX: number, fromY: number, toX: number, toY: number) {
+    return this.getRoot()
+      .realMouseDown({ position: { x: fromX, y: fromY }, button: "right" })
+      .realMouseMove(toX, toY)
+      .realMouseUp({ position: { x: toX, y: toY }, button: "right" })
   }
   dndWithDelayUp(fromX: number, fromY: number, toX: number, toY: number, delay?: number) {
     return this.getRoot()

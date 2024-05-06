@@ -1,4 +1,3 @@
-import React, { FC } from "react"
 import { useStore } from "@nanostores/react"
 
 import { DragItemAtom, TransformationMap } from "@/Editor/state"
@@ -6,10 +5,10 @@ import { MenuComponentProps } from "@/types"
 import { useRectsContext } from "@/Editor/rects-context"
 
 type Props = {
-  MenuComponent: FC<MenuComponentProps>
+  MenuComponent: (props: MenuComponentProps) => JSX.Element
 }
 
-export const Menu: FC<Props> = ({ MenuComponent }) => {
+export const Menu = ({ MenuComponent }: Props) => {
   const transformation = useStore(TransformationMap)
   const { editorContainerRef, zoomContainerRef } = useRectsContext()
   const preventCanvasMove = () => DragItemAtom.set({ type: undefined, x: 0, y: 0 })

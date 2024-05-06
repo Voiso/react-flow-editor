@@ -1,59 +1,59 @@
 {
-  "name": "@voiso/react-flow-editor",
-  "version": "2.3.5",
-  "description": "React component which enables creating flow editors with ease",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Voiso/react-flow-editor.git",
-    "directory": "packages/react-flow-editor"
-  },
-  "homepage": "https://github.com/Voiso/react-flow-editor",
-  "contributors": [],
-  "license": "MIT",
-  "type": "module",
-  "main": "./dist/react-flow-editor.umd.js",
-  "module": "./dist/react-flow-editor.es.js",
-  "types": "./dist/index.d.ts",
-  "style": "./dist/_style.scss",
-  "files": [
-    "dist"
-  ],
-  "exports": {
-    ".": {
-      "import": "./dist/react-flow-editor.es.js",
-      "require": "./dist/react-flow-editor.umd.js"
+    "name": "@voiso/react-flow-editor",
+    "version": "2.9.1",
+    "description": "React component which enables creating flow editors with ease",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Voiso/react-flow-editor.git",
+        "directory": "packages/react-flow-editor"
     },
-    "./styles": "./dist/style.css"
-  },
-  "scripts": {
-    "build": "vite build",
-    "prettier": "prettier -c --config ../../.prettierrc \"src/**/*.{ts,tsx,md}\"",
-    "eslint": "eslint ./src --ext .ts,.tsx --quiet",
-    "typescript": "tsc -noEmit --pretty"
-  },
-  "dependencies": {
-    "@nanostores/react": "^0.4.0",
-    "lodash": "^4.17.21",
-    "nanostores": "^0.7.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
-  },
-  "peerDependencies": {
-    "react": "^16.8.0 || ^17.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0"
-  },
-  "devDependencies": {
-    "@types/lodash": "^4.14.182",
-    "@types/react": "17.0.30",
-    "@vitejs/plugin-react": "^1.3.2",
-    "copyfiles": "^2.3.0",
-    "eslint": "^8.20.0",
-    "prettier": "^2.7.1",
-    "sass": "^1.53.0",
-    "typescript": "^4.0.2",
-    "vite": "^2.9.13",
-    "vite-plugin-dts": "^1.2.1",
-    "vite-plugin-externals": "^0.5.0",
-    "vite-plugin-static-copy": "^0.6.1"
-  }
+    "homepage": "https://github.com/Voiso/react-flow-editor",
+    "contributors": [],
+    "license": "MIT",
+    "type": "module",
+    "main": "./dist/react-flow-editor.umd.js",
+    "module": "./dist/react-flow-editor.es.js",
+    "types": "./dist/index.d.ts",
+    "style": "./dist/_style.scss",
+    "files": [
+        "dist"
+    ],
+    "exports": {
+        ".": {
+            "import": "./dist/react-flow-editor.es.js",
+            "require": "./dist/react-flow-editor.umd.js"
+        },
+        "./styles": "./dist/style.css"
+    },
+    "scripts": {
+        "build": "vite build",
+        "prettier": "prettier -c --config ../../.prettierrc \"src/**/*.{ts,tsx,md}\"",
+        "eslint": "eslint ./src --ext .ts,.tsx --quiet",
+        "typescript": "tsc -noEmit --pretty"
+    },
+    "dependencies": {
+        "@nanostores/react": "^0.4.0",
+        "lodash": "^4.17.21",
+        "nanostores": "^0.7.0",
+        "react": "17.0.2",
+        "react-dom": "17.0.2"
+    },
+    "peerDependencies": {
+        "react": "^16.8.0 || ^17.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0"
+    },
+    "devDependencies": {
+        "@types/lodash": "^4.14.182",
+        "@types/react": "17.0.30",
+        "@vitejs/plugin-react": "^1.3.2",
+        "copyfiles": "^2.3.0",
+        "eslint": "^8.20.0",
+        "prettier": "^2.7.1",
+        "sass": "^1.53.0",
+        "typescript": "^4.0.2",
+        "vite": "^2.9.13",
+        "vite-plugin-dts": "^1.2.1",
+        "vite-plugin-externals": "^0.5.0",
+        "vite-plugin-static-copy": "^0.6.1"
+    }
 }

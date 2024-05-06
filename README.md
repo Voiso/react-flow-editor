@@ -1,18 +1,61 @@
-# Flow Editor
+# Install
 
-## Main features
+```bash
+nvm install 20.5.1
+nvm use
+pnpm install
+```
 
-- DnD to move canvas or nodes
+# React Flow Editor
+This project uses **pnpm** as package manager.
+
+## 🚀 Project Structure
+Inside of project, you'll see the following folders:
+```
+/
+├── packages/
+│   ├── e2e/
+│   ├── // e2e testing with Cypress
+│   │   └── ...
+│   │
+│   ├── examples/
+│   ├── // Example to see library in action
+│   │   └── ...
+│   │
+│   └── react-flow-editor/
+│   ├── // Core package
+│       └── ...
+│       └── package.json
+└── package.json
+```
+
+## 🧞 Commands
+All commands are run from the root of the project, from a terminal:
+
+| Command                                       | Action                                                                   |
+| :---------------------                        | :-------------------------------------------------                       |
+| `pnpm install`                                | Installs dependencies                                                    |
+| `pnpm --dir ./packages/examples dev`          | Starts local dev server at `localhost:3000`                              |
+| `pnpm run eslint`                             | Run eslint for lint all packages                                         |
+| `pnpm run prettier`                           | Run prettier for lint all packages                                       |
+| `pnpm run typescript`                         | Run typescript for lint all packages                                     |
+
+## 🎉 Publishing
+To publish a new version of **react-flow-editor** create release
+
+## 🏋🏻‍♀️ Main features
+
+- DnD with right mouse down to move canvas
 - Available autoScroll when DnD connection or nodes
-- Multiple Selection with SHIFT + click nodes
-- Multiple Selection with SHIFT and dragging select zone
+- Multiple Selection with left mouse click with shift on nodes
+- Multiple Selection with left mouse down and dragging select zone
 - Delete (multiple too) selected nodes with DELETE/BACKSPACE
-- DnD multiple selected nodes with SHIFT
+- DnD multiple selected nodes with left mouse down on selected nodes
 - Scroll mouse to zoom
 - Connectors could be disconnected from both edges
 - Overview function to place all the nodes to viewPort
 
-#### Rules for node states
+## ⌨️ Rules for node states
 
 1. node mouseDown = no changes in state
 2. node mouseDown -> mouseUp = `selected`

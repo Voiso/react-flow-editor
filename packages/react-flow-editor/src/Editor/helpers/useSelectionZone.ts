@@ -9,16 +9,14 @@ export const useSelectionZone = (zoomContainerRef: RefObject<HTMLElement>) => {
 
   const initSelectionZone = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
-      if (e.shiftKey) {
-        const transformation = TransformationMap.get()
-        const zoomContainerRect = findDOMRect(zoomContainerRef.current)
+      const transformation = TransformationMap.get()
+      const zoomContainerRect = findDOMRect(zoomContainerRef.current)
 
-        const left = (e.clientX - zoomContainerRect.left) / transformation.zoom
-        const top = (e.clientY - zoomContainerRect.top) / transformation.zoom
-        const point = { x: left, y: top }
+      const left = (e.clientX - zoomContainerRect.left) / transformation.zoom
+      const top = (e.clientY - zoomContainerRect.top) / transformation.zoom
+      const point = { x: left, y: top }
 
-        SelectionZoneAtom.set({ cornerStart: point, cornerEnd: point })
-      }
+      SelectionZoneAtom.set({ cornerStart: point, cornerEnd: point })
     },
     [selectionZone]
   )

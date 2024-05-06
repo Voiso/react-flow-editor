@@ -1,5 +1,4 @@
 import { useStore } from "@nanostores/react"
-import React, { FC } from "react"
 
 import { TransformationMap } from "@/Editor/state"
 
@@ -13,7 +12,7 @@ const defaultColors = {
   [BackgroundVariant.Lines]: "#eee"
 }
 
-const Background: FC<BackgroundProps> = ({ variant = BackgroundVariant.Dots, gap = 15, size = 0.4, color }) => {
+const Background = ({ variant = BackgroundVariant.Dots, gap = 15, size = 0.4, color }: BackgroundProps) => {
   const transformation = useStore(TransformationMap)
   const { scaledGap, xOffset, yOffset } = usePatternDimensions(gap)
 

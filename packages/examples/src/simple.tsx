@@ -1,4 +1,3 @@
-import * as React from "react"
 import * as ReactDOM from "react-dom"
 import { useStore } from "@nanostores/react"
 import {
@@ -6,7 +5,6 @@ import {
   Node,
   ScaleComponentProps,
   OutputComponentProps,
-  MenuComponentProps,
   ConnectorsBehaviour
 } from "@voiso/react-flow-editor"
 import "./simple.scss"
@@ -20,11 +18,11 @@ const NodeComponent = (node: Node) => <div className={`nodeElement ${node.state 
 
 const SelectionZoneComponent = () => <div className="selection-zone" />
 
-const OutputComponent: React.FC<OutputComponentProps> = ({ isActive, nodeState, isOutlined }) => (
+const OutputComponent = ({ isActive, nodeState, isOutlined }: OutputComponentProps) => (
   <div className={`${nodeState || ""} ${isActive ? "active" : ""} ${isOutlined ? "outlined" : ""}`} />
 )
 
-const ScaleComponent: React.FC<ScaleComponentProps> = ({ zoomIn, zoomOut, overview }) => (
+const ScaleComponent = ({ zoomIn, zoomOut, overview }: ScaleComponentProps) => (
   <div className="scale">
     <div className="scale-btn" onClick={zoomIn}>
       Zoom in
@@ -38,13 +36,13 @@ const ScaleComponent: React.FC<ScaleComponentProps> = ({ zoomIn, zoomOut, overvi
   </div>
 )
 
-const MenuComponent: React.FC<MenuComponentProps> = () => (
+const MenuComponent = () => (
   <div className="flow-menu button" onClick={createNode}>
     Create new Node
   </div>
 )
 
-const ConnectorsBehaviourComponent: React.FC = () => {
+const ConnectorsBehaviourComponent = () => {
   const connectorsBehaviour = useStore(ConnectorsBehaviourAtom)
 
   return (

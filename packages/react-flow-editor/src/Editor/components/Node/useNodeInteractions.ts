@@ -1,20 +1,35 @@
 import React, { useCallback, useState } from "react"
 import { useStore } from "@nanostores/react"
 
-import { DragItemAtom, HoveredNodeIdAtom, NodesAtom } from "@/Editor/state"
+import { DragItemAtom, HoveredNodeIdAtom, MaxNodeZIndex, NodesAtom } from "@/Editor/state"
 import { Node, NodeState, Point } from "@/types"
 
 import { BUTTON_LEFT } from "../../constants"
 import { DragItemType } from "../../types"
+import { buildResetSelectionCondition } from "./helpers"
 
 export const useNodeInteractions = (node: Node) => {
   const dragItem = useStore(DragItemAtom)
   const [initialClickCoords, setInitialClickCoords] = useState<Point>({ x: 0, y: 0 })
+  const [zIndex, setZIndex] = useState(MaxNodeZIndex.get())
 
   const onDragStarted: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    MaxNodeZIndex.set(MaxNodeZIndex.get() + 1)
+    setZIndex(MaxNodeZIndex.get())
+
     if (e.button === BUTTON_LEFT) {
       const point = { x: e.clientX, y: e.clientY }
+
       DragItemAtom.set({ type: DragItemType.node, ...point, id: node.id })
+
+      if (buildResetSelectionCondition(e, node)) {
+        NodesAtom.set(
+          NodesAtom.get().map((nodeItem) => ({
+            ...nodeItem,
+            state: null
+          }))
+        )
+      }
 
       setInitialClickCoords(point)
     }
@@ -26,8 +41,7 @@ export const useNodeInteractions = (node: Node) => {
         NodesAtom.set(
           NodesAtom.get().map((nodeItem) => {
             const isSelected =
-              (nodeItem.id === node.id && initialClickCoords.x === e.clientX && initialClickCoords.y === e.clientY) ||
-              (e.shiftKey && nodeItem.state === NodeState.dragging)
+              nodeItem.id === node.id && initialClickCoords.x === e.clientX && initialClickCoords.y === e.clientY
 
             if (isSelected) {
               return {
@@ -36,7 +50,9 @@ export const useNodeInteractions = (node: Node) => {
               }
             }
 
-            const isIdentity = e.shiftKey && nodeItem.state === NodeState.selected
+            const isIdentity =
+              (initialClickCoords.x !== e.clientX || initialClickCoords.y !== e.clientY || e.shiftKey) &&
+              nodeItem.state === NodeState.selected
 
             if (isIdentity) {
               return {
@@ -59,7 +75,7 @@ export const useNodeInteractions = (node: Node) => {
 
   const onMouseEnter: React.MouseEventHandler<HTMLDivElement> = useCallback(() => {
     HoveredNodeIdAtom.set(node.id)
-  }, [dragItem.id])
+  }, [dragItem.id, node.id])
 
   const onMouseLeave: React.MouseEventHandler<HTMLDivElement> = useCallback(() => {
     HoveredNodeIdAtom.set(null)
@@ -69,6 +85,7 @@ export const useNodeInteractions = (node: Node) => {
     onDragStarted,
     onMouseUp,
     onMouseEnter,
-    onMouseLeave
+    onMouseLeave,
+    zIndex
   }
 }

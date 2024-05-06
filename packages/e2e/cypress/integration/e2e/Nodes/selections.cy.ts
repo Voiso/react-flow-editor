@@ -1,4 +1,4 @@
-import { BROWSER_PX_DEVIATION } from "../constants"
+import { BROWSER_PX_DEVIATION, CLICK_COORDS } from "../constants"
 import { CONTEXT, MOVEMENT_X_1, MOVEMENT_Y_1 } from "./constants"
 import { nodesModel } from "./Nodes.model"
 
@@ -62,7 +62,7 @@ context(CONTEXT, () => {
     })
 
     it("Should select by selection zone", () => {
-      nodesModel.getRoot().trigger("mousedown", { shiftKey: true, button: 0, clientX: 210, clientY: 60 })
+      nodesModel.getRoot().trigger("mousedown", { button: 0, clientX: 210, clientY: 60 })
       nodesModel.getRoot().trigger("mousemove", { clientX: 330, clientY: 200 })
 
       nodesModel.getNodeElement(1).then(($el) => expect($el.hasClass("selected")).to.equals(true))
@@ -73,6 +73,23 @@ context(CONTEXT, () => {
 
       nodesModel.getNodeElement(1).then(($el) => expect($el.hasClass("selected")).to.equals(true))
       nodesModel.getNodeElement(2).then(($el) => expect($el.hasClass("selected")).to.equals(true))
+    })
+
+    it("Should select nodes on click", () => {
+      nodesModel.dndWithDelayUp(
+        CLICK_COORDS.FIRST_NODE.X,
+        CLICK_COORDS.FIRST_NODE.Y,
+        CLICK_COORDS.SECOND_NODE.X + 75,
+        CLICK_COORDS.SECOND_NODE.Y + 30
+      )
+
+      nodesModel.getNode(1).then(($el) => expect($el.css("z-index")).to.equals("2"))
+      nodesModel.getNode(2).then(($el) => expect($el.css("z-index")).to.equals("1"))
+
+      nodesModel.getNode(2).realMouseDown({ position: { x: 0, y: 0 } })
+
+      nodesModel.getNode(1).then(($el) => expect($el.css("z-index")).to.equals("2"))
+      nodesModel.getNode(2).then(($el) => expect($el.css("z-index")).to.equals("3"))
     })
   })
 })

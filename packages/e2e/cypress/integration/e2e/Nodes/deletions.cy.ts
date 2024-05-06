@@ -48,7 +48,7 @@ context(CONTEXT, () => {
 
     it("Should not delete important nodes on multiple delete", () => {
       nodesModel.nodeClick(1)
-      nodesModel.getNode(2).click({ shiftKey: true, force: true })
+      nodesModel.getNode(2).click()
 
       cy.realPress(KEY_CODE_BACK)
 

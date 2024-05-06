@@ -1,4 +1,4 @@
-import React, { FC, MutableRefObject } from "react"
+import { MutableRefObject, PropsWithChildren } from "react"
 import { useStore } from "@nanostores/react"
 
 import { cornersToRect } from "@/Editor/helpers/selectionZone"
@@ -6,7 +6,7 @@ import { SelectionZoneAtom, TransformationMap } from "@/Editor/state"
 import { Transformation } from "@/types"
 import { findDOMRect } from "@/Editor/helpers"
 
-export type SelectionZone = {
+export type SelectionZoneParams = {
   left: number
   top: number
   right: number
@@ -22,7 +22,7 @@ const selectionZoneDisplay = (zonePosition: Partial<DOMRect>): string => {
 export const computeSelectionZone = (
   zoomContainerRef: MutableRefObject<HTMLDivElement | null>,
   transformation: Transformation,
-  selectionZone: SelectionZone | null
+  selectionZone: SelectionZoneParams | null
 ): Partial<DOMRect> => {
   const zoomContainerRect = findDOMRect(zoomContainerRef.current)
 
@@ -43,7 +43,7 @@ type Props = {
   zoomContainerRef: MutableRefObject<HTMLDivElement | null>
 }
 
-export const SelectionZone: FC<Props> = ({ zoomContainerRef, children }) => {
+export const SelectionZone = ({ zoomContainerRef, children }: PropsWithChildren<Props>) => {
   const transformation = useStore(TransformationMap)
   const selectionZoneRect = cornersToRect(useStore(SelectionZoneAtom))
 
