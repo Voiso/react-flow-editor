@@ -1,3 +1,7 @@
+# React flow editor
+
+example - https://voiso.github.io/react-flow-editor/
+
 # Install
 
 ```bash
@@ -7,10 +11,13 @@ pnpm install
 ```
 
 # React Flow Editor
+
 This project uses **pnpm** as package manager.
 
 ## 🚀 Project Structure
+
 Inside of project, you'll see the following folders:
+
 ```
 /
 ├── packages/
@@ -30,17 +37,19 @@ Inside of project, you'll see the following folders:
 ```
 
 ## 🧞 Commands
+
 All commands are run from the root of the project, from a terminal:
 
-| Command                                       | Action                                                                   |
-| :---------------------                        | :-------------------------------------------------                       |
-| `pnpm install`                                | Installs dependencies                                                    |
-| `pnpm --dir ./packages/examples dev`          | Starts local dev server at `localhost:3000`                              |
-| `pnpm run eslint`                             | Run eslint for lint all packages                                         |
-| `pnpm run prettier`                           | Run prettier for lint all packages                                       |
-| `pnpm run typescript`                         | Run typescript for lint all packages                                     |
+| Command                              | Action                                      |
+| :----------------------------------- | :------------------------------------------ |
+| `pnpm install`                       | Installs dependencies                       |
+| `pnpm --dir ./packages/examples dev` | Starts local dev server at `localhost:3000` |
+| `pnpm run eslint`                    | Run eslint for lint all packages            |
+| `pnpm run prettier`                  | Run prettier for lint all packages          |
+| `pnpm run typescript`                | Run typescript for lint all packages        |
 
 ## 🎉 Publishing
+
 To publish a new version of **react-flow-editor** create release
 
 ## 🏋🏻‍♀️ Main features
