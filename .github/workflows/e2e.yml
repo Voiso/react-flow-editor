@@ -1,0 +1,12 @@
+name: e2e
+
+on:
+  - pull_request
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build the docker-compose stack
+        run: docker-compose up --build --abort-on-container-exit

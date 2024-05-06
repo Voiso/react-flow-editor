@@ -1,0 +1,11 @@
+.github
+.vscode
+docs
+example
+node_modules
+src
+test
+tsconfig.json
+tslint.json
+.prettierignore
+.prettierrc

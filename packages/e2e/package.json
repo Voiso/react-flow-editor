@@ -1,0 +1,17 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open -C cypress.config.ts",
+    "cypress:run": "cypress run -C cypress.config.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cypress": "^12.2.0",
+    "cypress-real-events": "^1.7.4"
+  }
+}

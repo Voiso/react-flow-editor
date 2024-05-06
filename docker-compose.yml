@@ -1,0 +1,28 @@
+version: "3.3"
+
+services:
+  cypress:
+    container_name: flow-editor-cypress
+    build:
+      context: .
+      target: cypress
+    entrypoint: cypress run --project /flow-editor/packages/e2e
+    links:
+      - flow-editor
+    depends_on:
+      - flow-editor
+    networks:
+      - e2e
+  flow-editor:
+    container_name: flow-editor
+    build:
+      context: .
+      target: flow-editor-install
+    networks:
+      - e2e
+    ports:
+      - 5173:5173
+    command: pnpm run serve:ci
+networks:
+  e2e:
+    driver: bridge

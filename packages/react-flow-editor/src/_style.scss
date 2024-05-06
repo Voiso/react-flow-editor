@@ -1,0 +1,48 @@
+.react-flow-editor {
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+
+  .zoom-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+
+  .react-flow__background {
+    width: 100%;
+    height: 100%;
+  }
+
+  svg.connections {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  .dot {
+    border-radius: 50%;
+    position: absolute;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  .node {
+    position: absolute;
+    z-index: 1;
+  }
+
+  .disconnector {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    fill: transparent;
+    pointer-events: all;
+  }
+}
