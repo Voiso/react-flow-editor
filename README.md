@@ -1,4 +1,5 @@
 # React flow editor
+Inspired by https://github.com/lochbrunner/react-flow-editor
 
 example - https://voiso.github.io/react-flow-editor/
 
