@@ -42,6 +42,15 @@ body {
   box-sizing: border-box;
 }
 
+button {
+  border: inherit;
+  background: transparent;
+
+  &:focus-visible{
+    border: inherit;
+  }
+}
+
 .editor-root {
   display: grid;
   grid-template-columns: 200px 1fr 500px;
@@ -198,7 +207,7 @@ body {
   display: flex;
   z-index: 1;
 
-  & > div {
+  & > button {
     padding: 10px;
 
     &.active {
