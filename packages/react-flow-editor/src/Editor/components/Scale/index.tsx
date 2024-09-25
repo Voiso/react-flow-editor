@@ -15,7 +15,11 @@ export const Scale = ({ ScaleComponent }: Props) => {
   const { editorContainerRef, isMounted } = useRectsContext()
   const transformation = useStore(TransformationMap)
 
-  const overview = () => void (isMounted && editorContainerRef.current && overviewActions.overview(editorContainerRef))
+  const overview = () => {
+    isMounted && editorContainerRef.current && overviewActions.overview(editorContainerRef)
+
+    return undefined
+  }
 
   useLayoutEffect(overview, [isMounted])
 

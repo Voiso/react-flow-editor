@@ -61,8 +61,8 @@ importers:
         specifier: ^0.4.0
         version: 0.4.0(nanostores@0.7.0)(react-dom@17.0.2)(react@17.0.2)
       '@voiso/react-flow-editor':
-        specifier: file:../react-flow-editor/
-        version: file:packages/react-flow-editor(react-dom@17.0.2)(react@17.0.2)
+        specifier: file:../react-flow-editor/src
+        version: file:packages/react-flow-editor/src
       nanostores:
         specifier: ^0.7.0
         version: 0.7.0
@@ -4194,17 +4194,7 @@ packages:
       commander: 2.20.3
     dev: true
 
-  file:packages/react-flow-editor(react-dom@17.0.2)(react@17.0.2):
-    resolution: {directory: packages/react-flow-editor, type: directory}
-    id: file:packages/react-flow-editor
-    name: '@voiso/react-flow-editor'
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0
-      react-dom: ^16.8.0 || ^17.0.0
-    dependencies:
-      '@nanostores/react': 0.4.0(nanostores@0.7.0)(react-dom@17.0.2)(react@17.0.2)
-      lodash: 4.17.21
-      nanostores: 0.7.0
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
+  file:packages/react-flow-editor/src:
+    resolution: {directory: packages/react-flow-editor/src, type: directory}
+    name: src
     dev: false

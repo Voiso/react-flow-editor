@@ -39,6 +39,7 @@ export const Canvas = ({ SelectionZoneComponent, ScaleComponent, MenuComponent }
   return (
     <RectsContext.Provider value={rectsContextValue}>
       <div
+        role="none"
         onMouseUpCapture={onDragEnded}
         onMouseMove={onDrag}
         onWheel={onWheel}

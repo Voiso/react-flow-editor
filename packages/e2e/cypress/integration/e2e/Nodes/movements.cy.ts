@@ -1,11 +1,4 @@
-import {
-  BROWSER_PX_DEVIATION,
-  CANVAS_ZONE_POINTS,
-  CLICK_COORDS,
-  NodeState,
-  WheelDirection,
-  ZOOM_IN_COUNT
-} from "../constants"
+import { BROWSER_PX_DEVIATION, CANVAS_ZONE_POINTS, CLICK_COORDS, NodeState } from "../constants"
 import { coordinatesFromMatrix } from "../helpers"
 import { CONTEXT, MOVEMENT_X_1, MOVEMENT_X_2, MOVEMENT_Y_1, MOVEMENT_Y_2 } from "./constants"
 import { nodesModel } from "./Nodes.model"
@@ -27,6 +20,9 @@ context(CONTEXT, () => {
       expect(Number(y)).to.closeTo(160, BROWSER_PX_DEVIATION)
     }
 
+    const checkFirstDragging = (isDragging: boolean) =>
+      nodesModel.getNodeElement(1).then(($el) => expect($el.hasClass(NodeState.dragging)).to.be.equals(isDragging))
+
     it("Should single node move correctly", () => {
       nodesModel.dnd(CLICK_COORDS.FIRST_NODE.X, CLICK_COORDS.FIRST_NODE.Y, MOVEMENT_X_1, MOVEMENT_Y_1)
 
@@ -39,9 +35,6 @@ context(CONTEXT, () => {
 
     it("Should has 'dragging' state", () => {
       nodesModel.getRoot().realMouseDown({ position: { x: CLICK_COORDS.FIRST_NODE.X, y: CLICK_COORDS.FIRST_NODE.Y } })
-
-      const checkFirstDragging = (isDragging: boolean) =>
-        nodesModel.getNodeElement(1).then(($el) => expect($el.hasClass(NodeState.dragging)).to.be.equals(isDragging))
 
       checkFirstDragging(false)
 
