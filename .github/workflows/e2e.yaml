@@ -19,11 +19,11 @@ jobs:
           node-version: 20.x
 
       - name: Install pnpm
-      - uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v4
         with:
           version: 8
 
-      - name: Cache node modules
+      - name: Cache node modules and pnpm store
         uses: actions/cache@v3
         with:
           path: |
@@ -36,17 +36,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-modules-
 
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Build project
-        run: pnpm run build
-
-      - name: Download built assets
-        uses: actions/download-artifact@v3
-        with:
-          name: react-flow-editor-dist
-          path: packages/react-flow-editor/dist
+      - name: Install dependencies and build
+        run: |
+          pnpm install
+          pnpm run build
 
       - name: Cache Cypress
         uses: actions/cache@v3
