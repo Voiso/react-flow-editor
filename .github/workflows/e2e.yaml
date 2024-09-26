@@ -23,20 +23,19 @@ jobs:
         with:
           version: 8.14.3
 
-      - name: Cache node modules and pnpm store
+      - name: Cache pnpm store
         uses: actions/cache@v3
         with:
           path: |
-            node_modules
             .pnpm-store
             ./packages/react-flow-editor/node_modules
             ./packages/e2e/node_modules
             ./packages/examples/node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-node-modules-
+            ${{ runner.os }}-pnpm-
 
-      - name: Install dependencies and build
+      - name: Install dependencies
         run: pnpm install
 
       - name: Build assets
@@ -50,7 +49,7 @@ jobs:
           key: ${{ runner.os }}-cypress-${{ hashFiles('pnpm-lock.yaml') }}
 
       - name: Install Cypress
-        run: CYPRESS_CACHE_FOLDER=./.cache/Cypress npx cypress install
+        run: CYPRESS_CACHE_FOLDER=./.cache/Cypress pnpm exec cypress install
 
       - name: Start server
         run: pnpm run serve:ci &
