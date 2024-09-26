@@ -15,7 +15,7 @@
     "typescript": "pnpm -r typescript",
     "cypress:docker": "docker-compose up --build --abort-on-container-exit",
     "serve:ci": "cd packages/examples && vite serve --host",
-    "cypress:ci": "cd packages/e2e && pnpm run cypress:ci"
+    "cypress:ci": "cd packages/e2e && TESTING_MODE=pipelines cypress run -C cypress.config.ts --env TESTING_MODE=pipelines --quiet --browser chrome"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.31.0",
