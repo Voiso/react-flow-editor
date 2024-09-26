@@ -37,9 +37,11 @@ jobs:
             ${{ runner.os }}-node-modules-
 
       - name: Install dependencies and build
-        run: |
-          pnpm install
-          pnpm run build
+        run: pnpm install
+
+      - name: Build assets
+        working_directory: ./packages/react-flow-editor
+        run: pnpm run build
 
       - name: Cache Cypress
         uses: actions/cache@v3
