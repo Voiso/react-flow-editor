@@ -38,9 +38,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # - name: Build assets
-      #   run: pnpm run build
-      #   working_directory: ./packages/react-flow-editor
+      - name: Build assets
+        run: pnpm run build
+        with:
+          path: ./packages/react-flow-editor
 
       - name: Cache Cypress
         uses: actions/cache@v3
@@ -49,7 +50,7 @@ jobs:
           key: ${{ runner.os }}-cypress-${{ hashFiles('pnpm-lock.yaml') }}
 
       - name: Install Cypress
-        run: CYPRESS_CACHE_FOLDER=./.cache/Cypress pnpm exec cypress install
+        run: CYPRESS_CACHE_FOLDER=./.cache/Cypress pnpm exec add cypress
 
       - name: Start server
         run: pnpm run serve:ci &
