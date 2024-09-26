@@ -47,8 +47,6 @@ jobs:
         with:
           build: pnpm run serve:ci
           start: pnpm run cypress:ci
-          env:
-            CI: true
 
       - name: Cache Cypress
         uses: actions/cache@v3
