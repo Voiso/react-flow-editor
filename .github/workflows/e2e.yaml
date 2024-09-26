@@ -39,8 +39,7 @@ jobs:
         run: pnpm install
 
       - name: Install vite
-        run: pnpm install
-        working-directory: ./packages/examples
+        run: pnpm install -g vite
 
       - name: Build assets
         run: pnpm run build
