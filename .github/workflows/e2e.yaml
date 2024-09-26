@@ -22,6 +22,8 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: 8.14.3
+      - name: Install Vite
+        run: pnpm install vite
 
       - name: Cache pnpm store
         uses: actions/cache@v3
