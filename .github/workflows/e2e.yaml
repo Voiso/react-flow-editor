@@ -49,7 +49,7 @@ jobs:
           key: ${{ runner.os }}-cypress-${{ hashFiles('pnpm-lock.yaml') }}
 
       - name: Install Cypress
-        run: CYPRESS_CACHE_FOLDER=./.cache/Cypress pnpm exec add cypress
+        run: CYPRESS_CACHE_FOLDER=./.cache/Cypress pnpm exec install cypress
 
       - name: Start server
         run: pnpm run serve:ci &
