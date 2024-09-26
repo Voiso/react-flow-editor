@@ -39,7 +39,8 @@ jobs:
         run: pnpm install
 
       - name: Build assets
-        working_directory: ./packages/react-flow-editor
+        with:
+          working_directory: ./packages/react-flow-editor
         run: pnpm run build
 
       - name: Cache Cypress
