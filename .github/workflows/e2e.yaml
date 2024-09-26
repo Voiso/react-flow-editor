@@ -22,8 +22,6 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: 8.14.3
-      - name: Install Vite
-        run: pnpm install vite
 
       - name: Cache pnpm store
         uses: actions/cache@v3
@@ -40,6 +38,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Install vite
+        run: pnpm install
+        working-directory: ./packages/examples
+
       - name: Build assets
         run: pnpm run build
         working-directory: ./packages/react-flow-editor
@@ -49,9 +51,3 @@ jobs:
         with:
           build: pnpm run serve:ci
           start: pnpm run cypress:ci
-
-      - name: Cache Cypress
-        uses: actions/cache@v3
-        with:
-          path: .cache/Cypress
-          key: ${{ runner.os }}-cypress-${{ hashFiles('pnpm-lock.yaml') }}
