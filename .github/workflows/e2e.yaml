@@ -40,8 +40,7 @@ jobs:
 
       - name: Build assets
         run: pnpm run build
-        with:
-          path: ./packages/react-flow-editor
+        working-directory: ./packages/react-flow-editor
 
       - name: Cache Cypress
         uses: actions/cache@v3
