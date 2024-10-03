@@ -49,7 +49,7 @@ jobs:
         working-directory: ./packages/react-flow-editor
 
       - name: Install Cypress
-        run: pnpm cypress install
+        run: pnpm install cypress
         working-directory: .
 
       - name: Cypress run
