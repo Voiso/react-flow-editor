@@ -9,8 +9,7 @@
     "dev": "vite serve",
     "prettier": "prettier -c --config ../../.prettierrc \"src/**/*.{ts,tsx}\"",
     "eslint": "eslint ./src --ext .ts,.tsx --quiet",
-    "build-docs": "pnpm build && mv ../../public ../../docs",
-    "serve:ci": "vite serve --host"
+    "build-docs": "pnpm build && mv ../../public ../../docs"
   },
   "devDependencies": {
     "@types/react": "17.0.30",
