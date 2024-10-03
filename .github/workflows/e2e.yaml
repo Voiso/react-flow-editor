@@ -48,17 +48,9 @@ jobs:
         run: pnpm run build
         working-directory: ./packages/react-flow-editor
 
-      - name: Serve examples
-        run: pnpm run serve:ci
-        working-directory: ./packages/examples
-
-      - name: Install Cypress
-        run: pnpm install
-        working-directory: ./packages/e2e
-
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          working-directory: ./packages/e2e
-          start: pnpm run cypress:ci
+          working-directory: .
+          start: pnpm run serve:ci && pnpm run cypress:ci
           parallel: true
