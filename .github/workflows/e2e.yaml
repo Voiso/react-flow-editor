@@ -51,7 +51,5 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          install: false
-          project: ./packages/e2e/
-          browser: chrome
+          directory: ../../
           start: pnpm run serve:ci && pnpm run cypress:ci
