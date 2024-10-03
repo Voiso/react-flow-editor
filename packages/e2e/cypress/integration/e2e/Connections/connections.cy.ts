@@ -1,6 +1,6 @@
 import { selectors } from "../../../models"
 import { CANVAS_POINT, CANVAS_ZONE_POINTS, CLICK_COORDS, NodeState } from "../constants"
-import { coordinatesFromPath } from "../helpers"
+import { compareWithProperCoordinates, coordinatesFromPath } from "../helpers"
 import { connectionsModel } from "./Connections.model"
 import { CYCLIC_TEST_2_CONNECTOR, FIRST_NODE_CONNECTOR, SECOND_NODE_CONNECTOR } from "./constants"
 
@@ -12,14 +12,7 @@ context("Node connections", () => {
 
   describe("Connections logic", () => {
     const verifyFirstConnectionInitial = () =>
-      connectionsModel
-        .getFirstConnectionPath()
-        .then(coordinatesFromPath)
-        .then((coordinates) => {
-          const properCoordinates = [15310, 15335, 15209, 15335, 15359, 15140, 15259, 15140]
-
-          coordinates.forEach((coord, inx) => expect(coord).to.closeTo(properCoordinates[inx], 2))
-        })
+      connectionsModel.getFirstConnectionPath().then(coordinatesFromPath).then(compareWithProperCoordinates)
 
     const verifyFirstConnectionInitialMiddleInflection = () =>
       connectionsModel
@@ -40,14 +33,7 @@ context("Node connections", () => {
       connectionsModel.mouseDown(FIRST_NODE_CONNECTOR.X, FIRST_NODE_CONNECTOR.Y)
       connectionsModel.getRoot().realMouseMove(FIRST_NODE_CONNECTOR.X, FIRST_NODE_CONNECTOR.Y)
 
-      connectionsModel
-        .getLastConnectionPath()
-        .then(coordinatesFromPath)
-        .then((coordinates) => {
-          const properCoordinates = [15253, 15136, 15153, 15136, 15359, 15140, 15259, 15140]
-
-          coordinates.forEach((coord, inx) => expect(coord).to.closeTo(properCoordinates[inx], 2))
-        })
+      connectionsModel.getLastConnectionPath().then(coordinatesFromPath).then(compareWithProperCoordinates)
 
       connectionsModel.getRoot().realMouseMove(CLICK_COORDS.SECOND_NODE.X, CLICK_COORDS.SECOND_NODE.Y)
       connectionsModel.mouseUp(CLICK_COORDS.SECOND_NODE.X, CLICK_COORDS.SECOND_NODE.Y)
@@ -59,14 +45,7 @@ context("Node connections", () => {
       connectionsModel.mouseDown(FIRST_NODE_CONNECTOR.X, FIRST_NODE_CONNECTOR.Y)
       connectionsModel.getRoot().realMouseMove(FIRST_NODE_CONNECTOR.X, FIRST_NODE_CONNECTOR.Y)
 
-      connectionsModel
-        .getLastConnectionPath()
-        .then(coordinatesFromPath)
-        .then((coordinates) => {
-          const properCoordinates = [15253, 15136, 15004, 15086, 15509, 15090, 15259, 15140]
-
-          coordinates.forEach((coord, inx) => expect(coord).to.closeTo(properCoordinates[inx], 2))
-        })
+      connectionsModel.getLastConnectionPath().then(coordinatesFromPath).then(compareWithProperCoordinates)
 
       connectionsModel.getRoot().realMouseMove(CLICK_COORDS.SECOND_NODE.X, CLICK_COORDS.SECOND_NODE.Y)
       connectionsModel.mouseUp(CLICK_COORDS.SECOND_NODE.X, CLICK_COORDS.SECOND_NODE.Y)

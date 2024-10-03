@@ -9,7 +9,7 @@ type Props = {
   onNodesChange?: (nodes: Node[]) => void
 }
 
-const synchronizeWithStore = <T extends Record<string, unknown> | Array<unknown>>(
+const useSynchronizeWithStore = <T extends Record<string, unknown> | Array<unknown>>(
   entity: T,
   storeEntity: WritableAtom<T> | MapStore<T>,
   updateEntity?: (entity: T) => void
@@ -37,7 +37,7 @@ const synchronizeWithStore = <T extends Record<string, unknown> | Array<unknown>
  * Used for sync props with inner store
  */
 export const StoreUpdater = ({ nodes, onNodesChange }: Props) => {
-  synchronizeWithStore(nodes, NodesAtom, onNodesChange)
+  useSynchronizeWithStore(nodes, NodesAtom, onNodesChange)
 
   return null
 }

@@ -18,22 +18,22 @@ const OutputComponent = ({ isActive, nodeState, isOutlined }: OutputComponentPro
 
 const ScaleComponent = ({ zoomIn, zoomOut, overview }: ScaleComponentProps) => (
   <div className="scale">
-    <div className="scale-btn" onClick={zoomIn}>
+    <button className="scale-btn" onClick={zoomIn}>
       Zoom in
-    </div>
-    <div className="scale-btn" onClick={zoomOut}>
+    </button>
+    <button className="scale-btn" onClick={zoomOut}>
       Zoom out
-    </div>
-    <div className="scale-btn" onClick={overview}>
+    </button>
+    <button className="scale-btn" onClick={overview}>
       Overview
-    </div>
+    </button>
   </div>
 )
 
 const MenuComponent = () => (
-  <div className="flow-menu button" onClick={createNode}>
+  <button className="flow-menu button" onClick={createNode}>
     Create new Node
-  </div>
+  </button>
 )
 
 const ConnectorsBehaviourComponent = () => {
@@ -42,13 +42,13 @@ const ConnectorsBehaviourComponent = () => {
   return (
     <div className="connectors-behaviour">
       {(["avoidSharpCorners", "middleInflection"] as Array<ConnectorsBehaviour>).map((type) => (
-        <div
+        <button
           key={type}
           onClick={() => ConnectorsBehaviourAtom.set(type)}
           className={connectorsBehaviour === type ? "active" : ""}
         >
           {type}
-        </div>
+        </button>
       ))}
     </div>
   )

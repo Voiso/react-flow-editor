@@ -22,6 +22,7 @@ const Node = ({
 
   return (
     <div
+      role="none"
       id={node.id}
       className="node"
       onMouseDown={nodeInteractions.onDragStarted}

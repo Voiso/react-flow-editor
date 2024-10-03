@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 
-import { NodeState } from "../../types"
+import { NodeState, Output } from "../../types"
 import { KEY_CODE_BACK, KEY_CODE_DELETE } from "../constants"
 import { useEditorContext } from "../editor-context"
 import { NodesAtom } from "../state"
@@ -18,15 +18,17 @@ export const useHotKeys = () => {
           .filter((node) => importantNodeIds && !importantNodeIds.includes(node.id))
           .map((node) => node.id)
 
+        const addNextNodeId = (output: Output): Output => ({
+          ...output,
+          nextNodeId: output.nextNodeId && selectedNodesIds.includes(output.nextNodeId) ? null : output.nextNodeId
+        })
+
         NodesAtom.set(
           nodes
             .filter((node) => !selectedNodesIds.includes(node.id))
             .map((node) => ({
               ...node,
-              outputs: node.outputs.map((out) => ({
-                ...out,
-                nextNodeId: out.nextNodeId && selectedNodesIds.includes(out.nextNodeId) ? null : out.nextNodeId
-              }))
+              outputs: node.outputs.map(addNextNodeId)
             }))
         )
       }

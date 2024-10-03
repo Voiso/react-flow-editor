@@ -1,3 +1,5 @@
+import { PROPER_COORDINATES } from "./constants"
+
 export const coordinatesFromMatrix = (matrixString: string): [string, string] =>
   matrixString.match(/([^ ]+), ([^ ]+)\)$/)!.slice(1) as [string, string]
 
@@ -8,3 +10,6 @@ export const coordinatesFromStringPX = (positionString: string) =>
 
 export const coordinatesFromPath = (pathString: string) =>
   coordinatesFromStringPX(pathString).filter((item) => !isNaN(Number(item)))
+
+export const compareWithProperCoordinates = (coordinates: Array<number>) =>
+  coordinates.forEach((coord, inx) => expect(coord).to.closeTo(PROPER_COORDINATES[inx], 2))

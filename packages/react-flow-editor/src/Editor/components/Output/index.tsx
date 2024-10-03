@@ -40,6 +40,7 @@ export const Output = React.memo(({ nodeId, nodeState, output }: Props) => {
 
   return (
     <div
+      role="none"
       className="dot"
       onMouseDown={startNewConnection}
       style={{

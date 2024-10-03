@@ -51,3 +51,5 @@ export enum CSSStyles {
   transform = "transform",
   transformOrigin = "transform-origin"
 }
+
+export const PROPER_COORDINATES = [15310, 15335, 15209, 15335, 15359, 15140, 15259, 15140]
