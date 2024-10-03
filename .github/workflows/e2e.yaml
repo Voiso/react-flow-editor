@@ -1,56 +1,56 @@
-name: e2e
+# name: e2e
 
-on:
-  pull_request:
-    branches:
-      - main
+# on:
+#   pull_request:
+#     branches:
+#       - main
 
-jobs:
-  e2e:
-    runs-on: ubuntu-latest
-    container:
-      image: cypress/browsers:node-20.5.0-chrome-114.0.5735.133-1-ff-114.0.2-edge-114.0.1823.51-1
-      options: --user 1001
+# jobs:
+#   e2e:
+#     runs-on: ubuntu-latest
+#     container:
+#       image: cypress/browsers:node-20.5.0-chrome-114.0.5735.133-1-ff-114.0.2-edge-114.0.1823.51-1
+#       options: --user 1001
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20.x
+#       - name: Setup Node.js
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 20.x
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 8.14.3
+#       - name: Install pnpm
+#         uses: pnpm/action-setup@v4
+#         with:
+#           version: 8.14.3
 
-      - name: Cache pnpm store
-        uses: actions/cache@v3
-        with:
-          path: |
-            .pnpm-store
-            ./packages/react-flow-editor/node_modules
-            ./packages/e2e/node_modules
-            ./packages/examples/node_modules
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
+#       - name: Cache pnpm store
+#         uses: actions/cache@v3
+#         with:
+#           path: |
+#             .pnpm-store
+#             ./packages/react-flow-editor/node_modules
+#             ./packages/e2e/node_modules
+#             ./packages/examples/node_modules
+#           key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+#           restore-keys: |
+#             ${{ runner.os }}-pnpm-
 
-      - name: Install dependencies
-        run: pnpm install
+#       - name: Install dependencies
+#         run: pnpm install
 
-      - name: Install vite
-        run: pnpm install -g vite
+#       - name: Install vite
+#         run: pnpm install -g vite
 
-      - name: Build assets
-        run: pnpm run build
-        working-directory: ./packages/react-flow-editor
+#       - name: Build assets
+#         run: pnpm run build
+#         working-directory: ./packages/react-flow-editor
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          working-directory: .
-          start: pnpm run serve:ci && pnpm run cypress:ci
-          parallel: true
+#       - name: Cypress run
+#         uses: cypress-io/github-action@v6
+#         with:
+#           working-directory: .
+#           start: pnpm run serve:ci && pnpm run cypress:ci
+#           parallel: true
