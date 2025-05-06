@@ -9,19 +9,19 @@ import { EditorProps } from "@/domain-types"
 
 type Props = Pick<EditorProps, "nodes" | "outputs" | "onNodesChange" | "onOutputsChange" | "onSelectionZoneChanged">
 
-const synchronizeWithStore = <T = unknown>(
+const useSynchronizeWithStore = <T = unknown>(
   entity: T,
   storeEntity: WritableAtom<T>,
   updateEntity?: (entity: T) => void
 ) => {
-  let unsubCallback: (() => void) | null = null
-
   useEffect(() => {
     storeEntity.set(entity)
   }, [entity])
 
   useEffect(() => {
-    if (updateEntity && !unsubCallback) {
+    let unsubCallback: (() => void) | null = null
+
+    if (updateEntity) {
       unsubCallback = storeEntity.subscribe((value) => updateEntity(value))
     }
 
@@ -30,7 +30,7 @@ const synchronizeWithStore = <T = unknown>(
         unsubCallback()
       }
     }
-  }, [updateEntity])
+  }, [updateEntity, storeEntity])
 }
 
 /**
@@ -39,9 +39,9 @@ const synchronizeWithStore = <T = unknown>(
 export const StoreUpdater = ({ nodes, outputs, onNodesChange, onOutputsChange, onSelectionZoneChanged }: Props) => {
   const selectionZone = useStore(SelectionZoneAtom)
 
-  synchronizeWithStore(nodes, NodesAtom, onNodesChange)
-  synchronizeWithStore(outputs, OutputsAtom, onOutputsChange)
-  synchronizeWithStore(selectionZone, SelectionZoneAtom, onSelectionZoneChanged)
+  useSynchronizeWithStore(nodes, NodesAtom, onNodesChange)
+  useSynchronizeWithStore(outputs, OutputsAtom, onOutputsChange)
+  useSynchronizeWithStore(selectionZone, SelectionZoneAtom, onSelectionZoneChanged)
 
   return null
 }
