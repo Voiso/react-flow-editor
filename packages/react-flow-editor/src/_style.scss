@@ -23,14 +23,6 @@
     height: 100%;
     width: 100%;
 
-    &.dragging-connection {
-      pointer-events: none;
-
-      .connection {
-        pointer-events: none;
-      }
-    }
-
     &--with-selected {
       z-index: 2;
       pointer-events: none;
@@ -39,29 +31,15 @@
 
   .connection {
     pointer-events: visibleStroke;
-    cursor: pointer;
 
     &.disabled {
       pointer-events: none;
-    }
-
-    &:hover:not(.connection--hidden) {
-      stroke-width: 1.5;
-    }
-
-    &--hidden:hover + .connection {
-      stroke-width: 1.5;
-    }
-
-    &--new {
-      stroke-width: 1.5;
     }
   }
 
   .dot {
     border-radius: 50%;
     position: absolute;
-    cursor: pointer;
     z-index: 1;
   }
 
@@ -70,12 +48,27 @@
     z-index: 1;
   }
 
-  .disconnector {
+  .disconnect-arrow {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
     fill: transparent;
     pointer-events: all;
+  }
+
+  &:not([data-hover-disabled]) {
+    .connection {
+      cursor: pointer;
+    }
+
+    .disconnect-arrow {
+      cursor: pointer;
+    }
+
+    .node {
+      cursor: pointer;
+    }
+
+    .dot {
+      cursor: grab;
+    }
   }
 }

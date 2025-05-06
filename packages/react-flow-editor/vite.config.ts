@@ -28,7 +28,7 @@ export default defineConfig({
     sourcemap: true,
     outDir: "./dist",
     lib: {
-      entry: path.resolve(__dirname, "src/index.ts"),
+      entry: path.resolve(__dirname, "index.ts"),
       name: "voiso/react-flow-editor"
     },
     rollupOptions: {

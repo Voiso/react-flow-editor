@@ -10,11 +10,10 @@ export default defineConfig({
   base: "./",
   resolve: {
     alias: {
-      "@voiso/react-flow-editor": path.resolve("../react-flow-editor/src"),
       "@": path.resolve("../react-flow-editor/src")
     }
   },
   build: {
-    outDir: "../../../public"
+    outDir: "../../../docs"
   }
 })
