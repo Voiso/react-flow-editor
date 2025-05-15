@@ -13,8 +13,10 @@
     "prettier": "pnpm -r prettier",
     "eslint": "pnpm -r eslint",
     "typescript": "pnpm -r typescript",
-    "cypress:docker": "docker-compose up --build --abort-on-container-exit",
-    "serve:ci": "cd packages/examples && vite serve --host"
+    "serve:ci": "cd packages/examples && pnpm dev",
+    "dev": "pnpx concurrently \"pnpm --dir ./packages/react-flow-editor run build:watch\" \"pnpm serve:ci\"",
+    "build": "pnpm --dir ./packages/react-flow-editor run build",
+    "build:examples": "pnpm --dir ./packages/examples run build"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.31.0",

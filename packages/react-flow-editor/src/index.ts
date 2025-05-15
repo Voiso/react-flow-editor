@@ -1,2 +1,2 @@
-export { Editor } from "./Editor"
-export * from "./types"
+export { Editor } from "./modules/editor"
+export * from "./domain-types"

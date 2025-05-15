@@ -3,8 +3,9 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "incremental": true
   },
   "exclude": ["dist", "node_modules"],
-  "include": ["./src"]
+  "include": ["./index.ts", "./src"]
 }

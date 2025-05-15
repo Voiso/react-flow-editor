@@ -1,8 +1,7 @@
 import { atom } from "nanostores"
-import { ConnectorsBehaviour, Node } from "@voiso/react-flow-editor"
+import { Node, Output } from "@voiso/react-flow-editor"
 
-import { initialNodes } from "./constants"
+import { initialNodes, outputs } from "./constants"
 
 export const NodesAtom = atom<Node[]>(initialNodes)
-
-export const ConnectorsBehaviourAtom = atom<ConnectorsBehaviour>("avoidSharpCorners")
+export const OutputsAtom = atom<Output[]>(outputs)

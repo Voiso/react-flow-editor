@@ -1,70 +1,30 @@
-import * as ReactDOM from "react-dom"
+import { createRoot } from "react-dom/client"
 import { useStore } from "@nanostores/react"
-import { Editor, Node, ScaleComponentProps, OutputComponentProps, ConnectorsBehaviour } from "@voiso/react-flow-editor"
+import { Editor } from "@voiso/react-flow-editor"
+import "@voiso/react-flow-editor/styles"
 import "./simple.scss"
 
 import { initialNodes, STYLED_CONFIG, TIPS } from "./constants"
-import { createNode } from "./helpers"
-import { NodeAttributes } from "./parts"
-import { ConnectorsBehaviourAtom, NodesAtom } from "./store"
-
-const NodeComponent = (node: Node) => <div className={`nodeElement ${node.state || ""}`}>Node</div>
-
-const SelectionZoneComponent = () => <div className="selection-zone" />
-
-const OutputComponent = ({ isActive, nodeState, isOutlined }: OutputComponentProps) => (
-  <div className={`${nodeState || ""} ${isActive ? "active" : ""} ${isOutlined ? "outlined" : ""}`} />
-)
-
-const ScaleComponent = ({ zoomIn, zoomOut, overview }: ScaleComponentProps) => (
-  <div className="scale">
-    <button className="scale-btn" onClick={zoomIn}>
-      Zoom in
-    </button>
-    <button className="scale-btn" onClick={zoomOut}>
-      Zoom out
-    </button>
-    <button className="scale-btn" onClick={overview}>
-      Overview
-    </button>
-  </div>
-)
-
-const MenuComponent = () => (
-  <button className="flow-menu button" onClick={createNode}>
-    Create new Node
-  </button>
-)
-
-const ConnectorsBehaviourComponent = () => {
-  const connectorsBehaviour = useStore(ConnectorsBehaviourAtom)
-
-  return (
-    <div className="connectors-behaviour">
-      {(["avoidSharpCorners", "middleInflection"] as Array<ConnectorsBehaviour>).map((type) => (
-        <button
-          key={type}
-          onClick={() => ConnectorsBehaviourAtom.set(type)}
-          className={connectorsBehaviour === type ? "active" : ""}
-        >
-          {type}
-        </button>
-      ))}
-    </div>
-  )
-}
+import {
+  MenuComponent,
+  NodeAttributes,
+  NodeComponent,
+  OutputComponent,
+  ScaleComponent,
+  SelectionZoneComponent
+} from "./parts"
+import { NodesAtom, OutputsAtom } from "./store"
 
 const App = () => {
   const nodes = useStore(NodesAtom)
-  const connectorsBehaviour = useStore(ConnectorsBehaviourAtom)
+  const outputs = useStore(OutputsAtom)
 
   return (
     <div className="editor-root">
       <div className="header">Flow Editor</div>
       <div className="flow-info">
-        <NodeAttributes nodes={nodes} />
+        <NodeAttributes />
       </div>
-      <ConnectorsBehaviourComponent />
       <div className="react-editor-container">
         <Editor
           NodeComponent={NodeComponent}
@@ -73,10 +33,11 @@ const App = () => {
           OutputComponent={OutputComponent}
           MenuComponent={MenuComponent}
           nodes={nodes}
+          outputs={outputs}
           onNodesChange={NodesAtom.set}
+          onOutputsChange={OutputsAtom.set}
           importantNodeIds={[initialNodes[0].id]}
           connectorStyleConfig={STYLED_CONFIG}
-          connectorsBehaviour={connectorsBehaviour}
         />
       </div>
       <pre className="tips">{TIPS}</pre>
@@ -84,4 +45,6 @@ const App = () => {
   )
 }
 
-ReactDOM.render(<App />, document.getElementById("root"))
+const root = createRoot(document.getElementById("root")!)
+
+root.render(<App />)
