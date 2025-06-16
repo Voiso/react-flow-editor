@@ -5,7 +5,7 @@ export const DEFAULT_OUTPUT = {
   y: 10
 }
 
-const DEFAULT_OUTPUT_2 = {
+export const DEFAULT_OUTPUT_2 = {
   x: 149,
   y: 45
 }
