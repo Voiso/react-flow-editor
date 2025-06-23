@@ -13,15 +13,19 @@ export const nodeFactory = (nodeName?: string): Node => ({
 })
 
 export const outputFactory = (nodeId: string) => {
+  const number = (Math.random() * 10000).toFixed()
+  const id = `Output_${number}`
+  const id_2 = `Output_${number + 1}`
+
   return [
     {
-      id: "Output_1",
+      id,
       nodeId,
       nextNodeId: null,
       position: DEFAULT_OUTPUT
     },
     {
-      id: "Output_2",
+      id: id_2,
       nodeId,
       nextNodeId: null,
       position: DEFAULT_OUTPUT_2
